@@ -93,31 +93,31 @@ bt_tri = psychopy.visual.TextStim(win=win, text="Blue Triangle", color="blue",po
 for i in range (1,13):   # To generate all 12 possible stimuli
     # Congruent Trials
     if(i == 1):
-        trials.append([rs_rect, rt_rect])
+        trials.append([0, rs_rect, rt_rect])
     elif(i == 2):
-        trials.append([rs_tri, rt_tri])
+        trials.append([0, rs_tri, rt_tri])
     elif(i == 3):
-        trials.append([bs_rect, bt_rect])
+        trials.append([0, bs_rect, bt_rect])
     elif(i == 4):
-        trials.append([bs_tri, bt_tri])
+        trials.append([0, bs_tri, bt_tri])
     #Inconcruent Trials - Shape
     elif(i == 5):
-        trials.append([rs_tri, rt_rect])
+        trials.append([1, rs_tri, rt_rect])
     elif(i == 6):
-        trials.append([rs_rect, rt_tri])
+        trials.append([1, rs_rect, rt_tri])
     elif(i == 7):
-        trials.append([bs_tri, bt_rect])
+        trials.append([1, bs_tri, bt_rect])
     elif(i == 8):
-        trials.append([bs_rect, bt_tri])
+        trials.append([1, bs_rect, bt_tri])
     #incongruent trails - Color
     elif(i == 9):
-        trials.append([bs_rect, rt_rect])
+        trials.append([2, bs_rect, rt_rect])
     elif(i == 10):
-        trials.append([bs_tri, rt_tri])
+        trials.append([2, bs_tri, rt_tri])
     elif(i == 11):
-        trials.append([rs_rect, bt_rect])
+        trials.append([2, rs_rect, bt_rect])
     elif(i == 12):
-        trials.append([rs_tri, bt_tri])
+        trials.append([2, rs_tri, bt_tri])
 
 ttrials = trials
 shuffle(ttrials)
@@ -126,8 +126,8 @@ etrials = trials + trials
 shuffle(etrials)
 
 while not psychopy.event.getKeys():
-    ttrials[0][0].draw()
     ttrials[0][1].draw()
+    ttrials[0][2].draw()
 
     win.flip()
 
