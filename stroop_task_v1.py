@@ -48,7 +48,7 @@ valid_in = pattern.findall(gui.data[0])
 #valid_in = 1
 #print(valid_in)
 if valid_in:
-    os.chdir(exp_id+"/")
+    #os.chdir(exp_id+"/")
     file = gui.data[0]+".csv"
     file = file.lower()
 
@@ -93,31 +93,31 @@ bt_tri = psychopy.visual.TextStim(win=win, text="Blue Triangle", color="blue",po
 for i in range (1,13):   # To generate all 12 possible stimuli
     # Congruent Trials
     if(i == 1):
-        trials.append([0, rs_rect, rt_rect])
+        trials.append([0, rs_rect, rt_rect, 'M'])
     elif(i == 2):
-        trials.append([0, rs_tri, rt_tri])
+        trials.append([0, rs_tri, rt_tri, 'O'])
     elif(i == 3):
-        trials.append([0, bs_rect, bt_rect])
+        trials.append([0, bs_rect, bt_rect, 'X'])
     elif(i == 4):
-        trials.append([0, bs_tri, bt_tri])
+        trials.append([0, bs_tri, bt_tri, 'W'])
     #Inconcruent Trials - Shape
     elif(i == 5):
-        trials.append([1, rs_tri, rt_rect])
+        trials.append([1, rs_tri, rt_rect, 'O'])
     elif(i == 6):
-        trials.append([1, rs_rect, rt_tri])
+        trials.append([1, rs_rect, rt_tri, 'M'])
     elif(i == 7):
-        trials.append([1, bs_tri, bt_rect])
+        trials.append([1, bs_tri, bt_rect, 'W'])
     elif(i == 8):
-        trials.append([1, bs_rect, bt_tri])
+        trials.append([1, bs_rect, bt_tri, 'X'])
     #incongruent trails - Color
     elif(i == 9):
-        trials.append([2, bs_rect, rt_rect])
+        trials.append([2, bs_rect, rt_rect, 'X'])
     elif(i == 10):
-        trials.append([2, bs_tri, rt_tri])
+        trials.append([2, bs_tri, rt_tri, 'W'])
     elif(i == 11):
-        trials.append([2, rs_rect, bt_rect])
+        trials.append([2, rs_rect, bt_rect, 'M'])
     elif(i == 12):
-        trials.append([2, rs_tri, bt_tri])
+        trials.append([2, rs_tri, bt_tri, 'O'])
 
 ttrials = trials
 shuffle(ttrials)
