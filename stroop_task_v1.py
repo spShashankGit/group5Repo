@@ -276,21 +276,13 @@ for trial in etrials:
         win.flip()
     
     keys = psychopy.event.getKeys(
-        keyList=["w","x","o","m"],
+        keyList=["W","X","O","M"],
         timeStamped = clock
     )
     
-    if keys:      
-        if (keys[0][0]=="a" and trial[2]==1) or (keys[0][0]=="l" and trial[2]==2):
-            pressed = -999
-            reaction = -999
-            currenttime = clock.getTime()
-            while clock.getTime() < currenttime + 4:
-                errormsg.draw()
-                win.flip()
-        else: 
-            pressed = keys[0][0]
-            reaction = keys[0][1]
+    if keys and (keys[0][0]== trial[3]):
+        pressed = keys[0][0]
+        reaction = keys[0][1]
     else: 
         pressed = -999
         reaction = -999
@@ -306,7 +298,7 @@ for trial in etrials:
             time,
             count,
             trial[0],
-
+            trial[3],
             pressed,
             reaction
         ]
@@ -321,5 +313,7 @@ wait = psychopy.event.waitKeys()
 # Make numeric
 
 for i in range(len(data)):
-    if data[i][7] == "a" : data[i][7] = 2
-    if data[i][7] == "l" : data[i][7] = 1
+    if data[i][7] == "O" : data[i][7] = 0
+    if data[i][7] == "M" : data[i][7] = 1
+    if data[i][7] == "W" : data[i][7] = 2
+    if data[i][7] == "X" : data[i][7] = 3
