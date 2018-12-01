@@ -93,31 +93,31 @@ bt_tri = psychopy.visual.TextStim(win=win, text="Blue Triangle", color="blue",po
 for i in range (1,13):   # To generate all 12 possible stimuli
     # Congruent Trials
     if(i == 1):
-        trials.append([0, rs_rect, rt_rect, 'M'])
+        trials.append([0, rs_rect, rt_rect, 'm'])
     elif(i == 2):
-        trials.append([0, rs_tri, rt_tri, 'O'])
+        trials.append([0, rs_tri, rt_tri, 'o'])
     elif(i == 3):
-        trials.append([0, bs_rect, bt_rect, 'X'])
+        trials.append([0, bs_rect, bt_rect, 'x'])
     elif(i == 4):
-        trials.append([0, bs_tri, bt_tri, 'W'])
+        trials.append([0, bs_tri, bt_tri, 'w'])
     #Inconcruent Trials - Shape
     elif(i == 5):
-        trials.append([1, rs_tri, rt_rect, 'O'])
+        trials.append([1, rs_tri, rt_rect, 'o'])
     elif(i == 6):
-        trials.append([1, rs_rect, rt_tri, 'M'])
+        trials.append([1, rs_rect, rt_tri, 'm'])
     elif(i == 7):
-        trials.append([1, bs_tri, bt_rect, 'W'])
+        trials.append([1, bs_tri, bt_rect, 'w'])
     elif(i == 8):
-        trials.append([1, bs_rect, bt_tri, 'X'])
+        trials.append([1, bs_rect, bt_tri, 'x'])
     #incongruent trails - Color
     elif(i == 9):
-        trials.append([2, bs_rect, rt_rect, 'X'])
+        trials.append([2, bs_rect, rt_rect, 'x'])
     elif(i == 10):
-        trials.append([2, bs_tri, rt_tri, 'W'])
+        trials.append([2, bs_tri, rt_tri, 'w'])
     elif(i == 11):
-        trials.append([2, rs_rect, bt_rect, 'M'])
+        trials.append([2, rs_rect, bt_rect, 'm'])
     elif(i == 12):
-        trials.append([2, rs_tri, bt_tri, 'O'])
+        trials.append([2, rs_tri, bt_tri, 'o'])
 
 ttrials = trials
 shuffle(ttrials)
@@ -125,13 +125,13 @@ shuffle(ttrials)
 etrials = trials + trials
 shuffle(etrials)
 
-while not psychopy.event.getKeys():
-    ttrials[0][1].draw()
-    ttrials[0][2].draw()
-
-    win.flip()
-
-win.close()
+#while not psychopy.event.getKeys():
+#    ttrials[0][1].draw()
+#    ttrials[0][2].draw()
+#
+#    win.flip()
+#
+#win.close()
 ############################################################################################
 # Fixation Sign
 ############################################################################################
@@ -245,6 +245,11 @@ endmsg = psychopy.visual.TextStim(
 ############################################################################################
 ############################################################################################
 ############################################################################################
+intromsg2.draw()
+win.flip()
+
+wait = psychopy.event.waitKeys()
+
 data = []
 
 count=0
@@ -269,16 +274,17 @@ for trial in etrials:
     
     clock.reset()
     
-    while clock.getTime() < 1.75:
+    while clock.getTime() < 4:
         trial[1].draw()
         trial[2].draw()
-
         win.flip()
     
     keys = psychopy.event.getKeys(
-        keyList=["O","M","W","X"],
+        keyList=["o","m","w","x"],
         timeStamped = clock
     )
+    print(keys[0][0])
+    print(trial[3])
     
     if keys and (keys[0][0]== trial[3]):
         pressed = keys[0][0]
@@ -305,6 +311,8 @@ for trial in etrials:
     )
 
 # End message
+
+print(data)
 
 endmsg.draw()
 win.flip()
