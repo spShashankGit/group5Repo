@@ -245,3 +245,81 @@ wait = psychopy.event.waitKeys()
 ############################################################################################
 ############################################################################################
 ############################################################################################
+data = []
+
+count=0
+
+clock = psychopy.core.Clock()
+
+for trial in etrials: 
+    
+    count = count + 1
+    
+    text = trial[4]
+    
+    clock.reset()
+    
+    while clock.getTime() < .5:
+        fixation.draw()
+        win.flip()
+    
+    keys = []
+    
+    psychopy.event.clearEvents()
+    
+    clock.reset()
+    
+    while clock.getTime() < 1.75:
+        trial[1].draw()
+        trial[2].draw()
+
+        win.flip()
+    
+    keys = psychopy.event.getKeys(
+        keyList=["w","x","o","m"],
+        timeStamped = clock
+    )
+    
+    if keys:      
+        if (keys[0][0]=="a" and trial[2]==1) or (keys[0][0]=="l" and trial[2]==2):
+            pressed = -999
+            reaction = -999
+            currenttime = clock.getTime()
+            while clock.getTime() < currenttime + 4:
+                errormsg.draw()
+                win.flip()
+        else: 
+            pressed = keys[0][0]
+            reaction = keys[0][1]
+    else: 
+        pressed = -999
+        reaction = -999
+        currenttime = clock.getTime()
+        while clock.getTime() < currenttime + 4:
+            errormsg.draw()
+            win.flip()
+
+    data.append( 
+        [
+            gui.data[0],
+            date,
+            time,
+            count,
+            trial[0],
+
+            pressed,
+            reaction
+        ]
+    )
+
+# End message
+
+endmsg.draw()
+win.flip()
+wait = psychopy.event.waitKeys()
+
+# Make numeric
+
+for i in range(len(data)):
+    if data[i][7] == "a" : data[i][7] = 2
+    if data[i][7] == "l" : data[i][7] = 1
