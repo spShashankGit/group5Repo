@@ -188,54 +188,54 @@ endmsg = psychopy.visual.TextStim(
 ############################################################################################
 # Run training trials
 ############################################################################################
-clock = psychopy.core.Clock()
-
-intromsg1.draw()
-win.flip()
-
-wait = psychopy.event.waitKeys()
-
-for trial in ttrials: 
-    
-    text = trial[3]
-    
-    clock.reset()
-    
-    while clock.getTime() < .5:
-        fixation.draw()
-        win.flip()
-      
-    keys = []
-
-    psychopy.event.clearEvents()
-    
-    clock.reset()
-
-    while clock.getTime() < 1.75:
-        text.draw()
-        win.flip()
-    
-    keys = psychopy.event.getKeys(
-        keyList=["a","l"],
-        timeStamped = clock
-    )
-    
-    if not keys: 
-        currenttime = clock.getTime()
-        while clock.getTime() < currenttime + 4:
-            errormsg.draw()
-            win.flip()
-    else: 
-        if (keys[0][0]=="a" and trial[1]==1) or (keys[0][0]=="l" and trial[1]==2):
-            currenttime = clock.getTime()
-            while clock.getTime() < currenttime + 4:
-                errormsg.draw()
-                win.flip()
-
-intromsg2.draw()
-win.flip()
-
-wait = psychopy.event.waitKeys()
+#clock = psychopy.core.Clock()
+#
+#intromsg1.draw()
+#win.flip()
+#
+#wait = psychopy.event.waitKeys()
+#
+#for trial in ttrials: 
+#    
+#    text = trial[3]
+#    
+#    clock.reset()
+#    
+#    while clock.getTime() < .5:
+#        fixation.draw()
+#        win.flip()
+#      
+#    keys = []
+#
+#    psychopy.event.clearEvents()
+#    
+#    clock.reset()
+#
+#    while clock.getTime() < 1.75:
+#        text.draw()
+#        win.flip()
+#    
+#    keys = psychopy.event.getKeys(
+#        keyList=["a","l"],
+#        timeStamped = clock
+#    )
+#    
+#    if not keys: 
+#        currenttime = clock.getTime()
+#        while clock.getTime() < currenttime + 4:
+#            errormsg.draw()
+#            win.flip()
+#    else: 
+#        if (keys[0][0]=="a" and trial[1]==1) or (keys[0][0]=="l" and trial[1]==2):
+#            currenttime = clock.getTime()
+#            while clock.getTime() < currenttime + 4:
+#                errormsg.draw()
+#                win.flip()
+#
+#intromsg2.draw()
+#win.flip()
+#
+#wait = psychopy.event.waitKeys()
 
 ############################################################################################
 ############################################################################################
@@ -255,7 +255,7 @@ for trial in etrials:
     
     count = count + 1
     
-    text = trial[4]
+#    text = trial[4]
     
     clock.reset()
     
@@ -276,7 +276,7 @@ for trial in etrials:
         win.flip()
     
     keys = psychopy.event.getKeys(
-        keyList=["W","X","O","M"],
+        keyList=["O","M","W","X"],
         timeStamped = clock
     )
     
