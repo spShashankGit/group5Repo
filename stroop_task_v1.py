@@ -48,7 +48,7 @@ valid_in = pattern.findall(gui.data[0])
 #valid_in = 1
 #print(valid_in)
 if valid_in:
-    os.chdir(exp_id+"/")
+    #os.chdir(exp_id+"/")
     file = gui.data[0]+".csv"
     file = file.lower()
 
@@ -93,31 +93,31 @@ bt_tri = psychopy.visual.TextStim(win=win, text="Blue Triangle", color="blue",po
 for i in range (1,13):   # To generate all 12 possible stimuli
     # Congruent Trials
     if(i == 1):
-        trials.append([rs_rect, rt_rect])
+        trials.append([0, rs_rect, rt_rect, 'm'])
     elif(i == 2):
-        trials.append([rs_tri, rt_tri])
+        trials.append([0, rs_tri, rt_tri, 'o'])
     elif(i == 3):
-        trials.append([bs_rect, bt_rect])
+        trials.append([0, bs_rect, bt_rect, 'x'])
     elif(i == 4):
-        trials.append([bs_tri, bt_tri])
+        trials.append([0, bs_tri, bt_tri, 'w'])
     #Inconcruent Trials - Shape
     elif(i == 5):
-        trials.append([rs_tri, rt_rect])
+        trials.append([1, rs_tri, rt_rect, 'o'])
     elif(i == 6):
-        trials.append([rs_rect, rt_tri])
+        trials.append([1, rs_rect, rt_tri, 'm'])
     elif(i == 7):
-        trials.append([bs_tri, bt_rect])
+        trials.append([1, bs_tri, bt_rect, 'w'])
     elif(i == 8):
-        trials.append([bs_rect, bt_tri])
+        trials.append([1, bs_rect, bt_tri, 'x'])
     #incongruent trails - Color
     elif(i == 9):
-        trials.append([bs_rect, rt_rect])
+        trials.append([2, bs_rect, rt_rect, 'x'])
     elif(i == 10):
-        trials.append([bs_tri, rt_tri])
+        trials.append([2, bs_tri, rt_tri, 'w'])
     elif(i == 11):
-        trials.append([rs_rect, bt_rect])
+        trials.append([2, rs_rect, bt_rect, 'm'])
     elif(i == 12):
-        trials.append([rs_tri, bt_tri])
+        trials.append([2, rs_tri, bt_tri, 'o'])
 
 ttrials = trials
 shuffle(ttrials)
@@ -125,13 +125,13 @@ shuffle(ttrials)
 etrials = trials + trials
 shuffle(etrials)
 
-while not psychopy.event.getKeys():
-    ttrials[0][0].draw()
-    ttrials[0][1].draw()
-
-    win.flip()
-
-win.close()
+#while not psychopy.event.getKeys():
+#    ttrials[0][1].draw()
+#    ttrials[0][2].draw()
+#
+#    win.flip()
+#
+#win.close()
 ############################################################################################
 # Fixation Sign
 ############################################################################################
@@ -150,15 +150,30 @@ errormsg = psychopy.visual.TextStim(
     color="DarkRed"
 )
 
+wrongAnswer = psychopy.visual.TextStim(
+    win=win,
+    text="Your answer was wrong",
+    color="DarkRed"
+)
+
+invalidKeyStroke = psychopy.visual.TextStim(
+    win=win,
+    text="Invalid Key!",
+    color="DarkRed"
+) 
 intromsg1 = psychopy.visual.TextStim(
     win=win,
     wrapWidth=800,
     text="""
-    You will see several word that are either printed
-    in Blue or Green. Your task is to press the correct button
-    as quickly as possible: \n\n
-    A for Blue \n
-    L for Green \n\n
+    You will see a shape (Rectangle or Traingle) drawn on the screen and text printed in the middle of the shape. \n
+    You are required to identify the shape and color of the figure drawn on the screen \n
+    then press the key corresponding to it on the keyboard as quickly as possible.
+    You have to record the input by pressing button corresponding to the type of shape, \n
+    Foe Example :? \n \n
+    W for Blue Triangle \n
+    X for Blue Rectangle \n
+    O for Red Triange \n
+    M for Red Rectangle \n
     We will start with a few training trials.\n
     Press any key to start.""",
     color="Black"
@@ -190,58 +205,166 @@ endmsg = psychopy.visual.TextStim(
 ############################################################################################
 clock = psychopy.core.Clock()
 
+
+
 intromsg1.draw()
+
+win.flip()
+
+
+
+wait = psychopy.event.waitKeys()
+
+
+for trial in ttrials: 
+    shape = trial[1]
+    text = trial[2]
+    clock.reset()
+   
+
+    while clock.getTime() < .5:
+
+     fixation.draw()
+
+     win.flip()
+
+     
+
+    keys = []
+
+    psychopy.event.clearEvents()
+   
+    clock.reset()
+
+
+
+    while clock.getTime() < 4:
+       
+       shape.draw() 
+       text.draw()
+       win.flip()
+
+   
+
+    keys = psychopy.event.getKeys(
+
+       keyList=["w","x","o","m"],
+
+       timeStamped = clock
+
+   )
+
+
+    if not keys: 
+       print (keys)
+       currenttime = clock.getTime()
+
+       while clock.getTime() < currenttime + 4:
+
+           invalidKeyStroke.draw()
+
+           win.flip()
+
+    else: 
+
+       #if (keys[0][0]=="a" and trial[1]==1) or (keys[0][0]=="l" and trial[1]==2):
+       if(keys[0][0]=="w" and trial[3]=="w") or (keys[0][0]=="x" and trial[3]=="x") or (keys[0][0]=="o" and trial[3]=="o") or (keys[0][0]=="m" and trial[3]=="m"):
+            print ('Correct Answer')
+       
+       else:
+           currenttime = clock.getTime()
+
+           while clock.getTime() < currenttime + 4:
+
+               wrongAnswer.draw()
+
+               win.flip()
+
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
+intromsg2.draw()
 win.flip()
 
 wait = psychopy.event.waitKeys()
 
-for trial in ttrials: 
+data = []
+
+count=0
+
+clock = psychopy.core.Clock()
+
+for trial in etrials: 
     
-    text = trial[3]
+    count = count + 1
+    
+#    text = trial[4]
     
     clock.reset()
     
     while clock.getTime() < .5:
         fixation.draw()
         win.flip()
-      
+    
     keys = []
-
+    
     psychopy.event.clearEvents()
     
     clock.reset()
-
-    while clock.getTime() < 1.75:
-        text.draw()
+    
+    while clock.getTime() < 4:
+        trial[1].draw()
+        trial[2].draw()
         win.flip()
     
     keys = psychopy.event.getKeys(
-        keyList=["a","l"],
+        keyList=["o","m","w","x"],
         timeStamped = clock
     )
+    print(keys[0][0])
+    print(trial[3])
     
-    if not keys: 
+    if keys and (keys[0][0]== trial[3]):
+        pressed = keys[0][0]
+        reaction = keys[0][1]
+    else: 
+        pressed = -999
+        reaction = -999
         currenttime = clock.getTime()
         while clock.getTime() < currenttime + 4:
             errormsg.draw()
             win.flip()
-    else: 
-        if (keys[0][0]=="a" and trial[1]==1) or (keys[0][0]=="l" and trial[1]==2):
-            currenttime = clock.getTime()
-            while clock.getTime() < currenttime + 4:
-                errormsg.draw()
-                win.flip()
 
-intromsg2.draw()
+    data.append( 
+        [
+            gui.data[0],
+            date,
+            time,
+            count,
+            trial[0],
+            trial[3],
+            pressed,
+            reaction
+        ]
+    )
+
+# End message
+
+print(data)
+
+endmsg.draw()
 win.flip()
-
 wait = psychopy.event.waitKeys()
 
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
+# Make numeric
+
+for i in range(len(data)):
+    if data[i][7] == "O" : data[i][7] = 0
+    if data[i][7] == "M" : data[i][7] = 1
+    if data[i][7] == "W" : data[i][7] = 2
+    if data[i][7] == "X" : data[i][7] = 3
