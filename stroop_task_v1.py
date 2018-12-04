@@ -137,11 +137,12 @@ shuffle(etrials)
 ############################################################################################
 # Fixation Sign
 ############################################################################################
-fixation = psychopy.visual.Rect(
-    win=win, 
-    size=10,
-    lineColor="Black",
-    fillColor="Black")    
+#fixation = psychopy.visual.Rect(
+#    win=win, 
+#    size=100,
+#    lineColor="Black",
+#    fillColor="Black")    
+fixation = psychopy.visual.TextStim(win=win, text="*******", color="black",pos=[0,0], bold=True)
 ############################################################################################
  #Define message texts
 ############################################################################################
@@ -235,7 +236,7 @@ win.flip()
 wait = psychopy.event.waitKeys()
 
 clock.reset()
-while clock.getTime() < 4:    
+while clock.getTime() < .2
     trials[8][1].draw() 
     trials[8][2].draw()
     ExampleMsg.draw()
@@ -257,9 +258,9 @@ while(training_done == "False"):
             win.flip()
 
         keys = []
-        psychopy.event.clearEvents()       
+        psychopy.event.clearEvents()
         clock.reset()
-        while clock.getTime() < 4:           
+        while clock.getTime() < 4:
            shape.draw() 
            text.draw()
            win.flip()
@@ -294,22 +295,18 @@ while(training_done == "False"):
     else:
         training_done = "True"
 
-
 ############################################################################################
 # Run Experiment Trials
 ############################################################################################
 intromsg2.draw()
 win.flip()
-
 wait = psychopy.event.waitKeys()
 
 data = []
-
 count=0
 
 clock = psychopy.core.Clock()
-
-for trial in ttrials: 
+for trial in etrials: 
     
     count = count + 1
     
