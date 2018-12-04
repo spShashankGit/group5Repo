@@ -2,11 +2,11 @@ List of Bugs encountered or changes recommended
  ------------------------------------------------------------------------------------------------------
  ID.  |                           Description                                             |   Status
  ------------------------------------------------------------------------------------------------------
- 1.   |  Even on entering cancel while entering User ID, the code moves forward           |    Open
+ 1.   |  Even on entering cancel while entering User ID, the code moves forward           |   Closed
  ------------------------------------------------------------------------------------------------------
- 2.   |  Make intro message more informative, maybe include an example                    |    Open 
+ 2.   |  Make intro message more informative, maybe include an example                    |   Closed 
  ------------------------------------------------------------------------------------------------------
- 3.   |  Saving of data still not incoperated                                             |    Open
+ 3.   |  Saving of data still not incoperated                                             |   Closed
  ------------------------------------------------------------------------------------------------------
  4.   |  Incase of multiple key presses all the timestramps is been saved to the 'data'   |    Open
       |  list where it should just contain the timing for the first input                 |    
@@ -15,7 +15,7 @@ List of Bugs encountered or changes recommended
  ------------------------------------------------------------------------------------------------------
  6.   |  Three diffent error mesages                                                      |    Open
  ------------------------------------------------------------------------------------------------------
- 7.   |  Numeric conversion of data is broken                                             |    Open
+ 7.   |  Numeric conversion of data is broken                                             |   Closed
  ------------------------------------------------------------------------------------------------------
  8.   |  Timing in exp. and training trials need to be adjusted                           |    Open
  ------------------------------------------------------------------------------------------------------

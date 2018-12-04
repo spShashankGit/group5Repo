@@ -11,12 +11,14 @@ import re
 from random import shuffle
 from psychopy.visual import ShapeStim
 ############################################################################################
-# Constants
+# Constants and Variables
 ############################################################################################
-exp_id = "PSY_G5"
-trials  = []
-ttrials = []
-etrials = []
+exp_id = "PSY_G5"           # Name of the Disrectory where data is stored
+presentation = 1            # When '1' number of trials are reduced for a faster demo
+training_done = "False"     # To extend the training on user request
+trials  = []                # List of all possible Stimuli
+ttrials = []                # Training Trials List
+etrials = []                # Experiment Trials List
 
 ############################################################################################
 #Get date and timeStamped
@@ -24,11 +26,9 @@ etrials = []
 dt = datetime.datetime.now()
 date = dt.strftime("%x");
 time = dt.strftime("%X");
-#print(date, time)
-
 
 ############################################################################################
-# Start: Input fields
+# Generate User ID
 ############################################################################################
 gui = psychopy.gui.Dlg(title="User ID", pos=(400, 800))
 gui.addText('Format of User ID is', color='Black')
@@ -39,20 +39,26 @@ gui.addText('Example : For a guy named Sven Milz aged 32', color='Blue')
 gui.addText('      User ID -> 32MSVMI', color='Blue')
 gui.addField("User ID:")
 gui.show()
-
+if gui.OK:  
+    print(gui.data[0])
+else:
+    sys.exit("user cancelled")
+    
 pattern=re.compile(r'^([1-9]{2})'
                    r'([m|M|f|F])'
                    r'([a-zA-Z]{4})')
 
 valid_in = pattern.findall(gui.data[0])
-#valid_in = 1
-#print(valid_in)
 if valid_in:
-    #os.chdir(exp_id+"/")
-    file = gui.data[0]+".csv"
+    usr_id = gui.data[0]
+    os.chdir(exp_id+"/")
+    file = usr_id+".csv"
     file = file.lower()
 
     if os.path.exists(file):
+        gui = psychopy.gui.Dlg(title="File already exists", pos=(400, 800))
+        gui.addText('Please contact the coordinator', color='Black')
+        gui.show()
         sys.exit("File already exists")
 else: 
     gui = psychopy.gui.Dlg(title="Invalid User ID", pos=(400, 800))
@@ -63,11 +69,12 @@ else:
 # Create window
 ############################################################################################
 win = psychopy.visual.Window(
-    #size=(1024, 768),
+    size=(1024, 768),
     units='pix',
-    fullscr=True,
+    #fullscr=True,
     color=[1, 1, 1]
 )
+
 ############################################################################################
 # Definition of stimuli
 ############################################################################################
@@ -88,7 +95,6 @@ bt_tri = psychopy.visual.TextStim(win=win, text="Blue Triangle", color="blue",po
 
 ############################################################################################
 # Create training and Experiment trials
-# Each word is shown, colours completely randomized
 ############################################################################################
 for i in range (1,13):   # To generate all 12 possible stimuli
     # Congruent Trials
@@ -119,19 +125,15 @@ for i in range (1,13):   # To generate all 12 possible stimuli
     elif(i == 12):
         trials.append([2, rs_tri, bt_tri, 'o'])
 
-ttrials = trials
+if presentation == 1 :
+    ttrials = [trials[0]]+[trials[4]]+[trials[8]]+[trials[6]]+[trials[10]]+[trials[2]]
+    etrials = [trials[1]]+[trials[5]]+[trials[9]]+[trials[7]]+[trials[11]]+[trials[3]]
+else:
+    ttrials = trials
+    etrials = trials + trials
+
 shuffle(ttrials)
-
-etrials = trials + trials
 shuffle(etrials)
-
-#while not psychopy.event.getKeys():
-#    ttrials[0][1].draw()
-#    ttrials[0][2].draw()
-#
-#    win.flip()
-#
-#win.close()
 ############################################################################################
 # Fixation Sign
 ############################################################################################
@@ -139,28 +141,68 @@ fixation = psychopy.visual.Rect(
     win=win, 
     size=10,
     lineColor="Black",
-    fillColor="Black")
-    
+    fillColor="Black")    
 ############################################################################################
  #Define message texts
 ############################################################################################
 errormsg = psychopy.visual.TextStim(
     win=win,
-    text="No correct button was pressed",
+    text="No valid button was pressed",
     color="DarkRed"
 )
 
+wrongAnswer = psychopy.visual.TextStim(
+    win=win,
+    text="Your answer was wrong",
+    color="DarkRed"
+)
+
+invalidKeyStroke = psychopy.visual.TextStim(
+    win=win,
+    text="Invalid Key!",
+    color="DarkRed"
+) 
 intromsg1 = psychopy.visual.TextStim(
     win=win,
     wrapWidth=800,
     text="""
-    You will see several word that are either printed
-    in Blue or Green. Your task is to press the correct button
-    as quickly as possible: \n\n
-    A for Blue \n
-    L for Green \n\n
+    You will see a Rectangle or Traingle drawn on the screen which can be either Blue or Red.\n
+    
+    You will also see some text printed in the middle of the shape. \n
+    
+    You are required to identify the shape and color of the figure while ignoring the text\n
+    
+    The following is the keys must be pressed corresponding to the shape you see \n
+    'w' for Blue Triangle \n
+    'x' for Blue Rectangle \n
+    'o' for Red Triange \n
+    'm' for Red Rectangle \n
+
+    Press any key to see an example.""",
+    color="Black"
+)
+
+ExampleMsg = psychopy.visual.TextStim(
+    win=win,
+    wrapWidth=800,
+    text="""
+    For the stimuli below you should press 'x' on the keyboard\n\n\n\n\n\n\n\n\n\n\n
+
+    """,
+    color="Black"
+)
+
+intromsg1_contd = psychopy.visual.TextStim(
+    win=win,
+    wrapWidth=800,
+    text="""
+    'w' for Blue Triangle \n
+    'x' for Blue Rectangle \n
+    'o' for Red Triange \n
+    'm' for Red Rectangle \n
+
     We will start with a few training trials.\n
-    Press any key to start.""",
+""",
     color="Black"
 )
 
@@ -169,9 +211,7 @@ intromsg2 = psychopy.visual.TextStim(
     wrapWidth=800,
     text="""
     We will now start with the real experiment.\n
-    Please press again the correct button as fast as possible:\n\n
-    A for Blue \n
-    L for Green \n\n
+    Please try to press the correct button as fast as possible:\n\n\n
     Press any key to start.""",
     color="Black"
 )
@@ -188,62 +228,75 @@ endmsg = psychopy.visual.TextStim(
 ############################################################################################
 # Run training trials
 ############################################################################################
-#clock = psychopy.core.Clock()
-#
-#intromsg1.draw()
-#win.flip()
-#
-#wait = psychopy.event.waitKeys()
-#
-#for trial in ttrials: 
-#    
-#    text = trial[3]
-#    
-#    clock.reset()
-#    
-#    while clock.getTime() < .5:
-#        fixation.draw()
-#        win.flip()
-#      
-#    keys = []
-#
-#    psychopy.event.clearEvents()
-#    
-#    clock.reset()
-#
-#    while clock.getTime() < 1.75:
-#        text.draw()
-#        win.flip()
-#    
-#    keys = psychopy.event.getKeys(
-#        keyList=["a","l"],
-#        timeStamped = clock
-#    )
-#    
-#    if not keys: 
-#        currenttime = clock.getTime()
-#        while clock.getTime() < currenttime + 4:
-#            errormsg.draw()
-#            win.flip()
-#    else: 
-#        if (keys[0][0]=="a" and trial[1]==1) or (keys[0][0]=="l" and trial[1]==2):
-#            currenttime = clock.getTime()
-#            while clock.getTime() < currenttime + 4:
-#                errormsg.draw()
-#                win.flip()
-#
-#intromsg2.draw()
-#win.flip()
-#
-#wait = psychopy.event.waitKeys()
+clock = psychopy.core.Clock()
+
+intromsg1.draw()
+win.flip()
+wait = psychopy.event.waitKeys()
+
+clock.reset()
+while clock.getTime() < 4:    
+    trials[8][1].draw() 
+    trials[8][2].draw()
+    ExampleMsg.draw()
+    win.flip()
+    wait = psychopy.event.waitKeys()
+
+intromsg1_contd.draw()
+win.flip()
+wait = psychopy.event.waitKeys()
+
+while(training_done == "False"):
+    for trial in ttrials: 
+        shape = trial[1]
+        text = trial[2]
+        clock.reset()
+
+        while clock.getTime() < .5:
+            fixation.draw()
+            win.flip()
+
+        keys = []
+        psychopy.event.clearEvents()       
+        clock.reset()
+        while clock.getTime() < 4:           
+           shape.draw() 
+           text.draw()
+           win.flip()
+
+        keys = psychopy.event.getKeys(
+           keyList=["w","x","o","m"],
+           timeStamped = clock
+
+       )
+
+        if not keys: 
+            print (keys)
+            currenttime = clock.getTime()
+            while clock.getTime() < currenttime + 4:
+               invalidKeyStroke.draw()
+               win.flip()
+
+        else: 
+            if(keys[0][0]=="w" and trial[3]=="w") or (keys[0][0]=="x" and trial[3]=="x") or (keys[0][0]=="o" and trial[3]=="o") or (keys[0][0]=="m" and trial[3]=="m"):
+                print ('Correct Answer') 
+            else:
+                currenttime = clock.getTime()
+                while clock.getTime() < currenttime + 4:
+                    wrongAnswer.draw()
+                    win.flip()
+    
+    gui = psychopy.gui.Dlg(title="Are you ready to continue ?", labelButtonOK='No', labelButtonCancel='Yes', pos=(600, 800))
+    gui.addText('Click No for more training trials', color='Black')
+    gui.show()
+    if gui.OK:  
+        training_done = "False"
+    else:
+        training_done = "True"
+
 
 ############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
+# Run Experiment Trials
 ############################################################################################
 intromsg2.draw()
 win.flip()
@@ -256,11 +309,9 @@ count=0
 
 clock = psychopy.core.Clock()
 
-for trial in etrials: 
+for trial in ttrials: 
     
     count = count + 1
-    
-#    text = trial[4]
     
     clock.reset()
     
@@ -283,12 +334,13 @@ for trial in etrials:
         keyList=["o","m","w","x"],
         timeStamped = clock
     )
-    print(keys[0][0])
-    print(trial[3])
+    #print(keys[0][1])
+    #print(trial[3])
     
     if keys and (keys[0][0]== trial[3]):
         pressed = keys[0][0]
         reaction = keys[0][1]
+        print ('Correct Answer') 
     else: 
         pressed = -999
         reaction = -999
@@ -299,7 +351,7 @@ for trial in etrials:
 
     data.append( 
         [
-            gui.data[0],
+            usr_id,
             date,
             time,
             count,
@@ -309,19 +361,35 @@ for trial in etrials:
             reaction
         ]
     )
-
+#print(data)
+############################################################################################
 # End message
-
-print(data)
-
+############################################################################################
 endmsg.draw()
 win.flip()
 wait = psychopy.event.waitKeys()
-
+############################################################################################
 # Make numeric
-
+############################################################################################
 for i in range(len(data)):
-    if data[i][7] == "O" : data[i][7] = 0
-    if data[i][7] == "M" : data[i][7] = 1
-    if data[i][7] == "W" : data[i][7] = 2
-    if data[i][7] == "X" : data[i][7] = 3
+    if data[i][5] == "o" : data[i][5] = 0
+    if data[i][6] == "o" : data[i][6] = 0
+    
+    if data[i][5] == "m" : data[i][5] = 1
+    if data[i][6] == "m" : data[i][6] = 1
+    
+    if data[i][5] == "w" : data[i][5] = 2
+    if data[i][6] == "w" : data[i][6] = 2
+    
+    if data[i][5] == "x" : data[i][5] = 3
+    if data[i][6] == "x" : data[i][6] = 3
+
+############################################################################################
+# Save
+############################################################################################
+with open(file, mode="wb") as writefile: 
+    writer = csv.writer(writefile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for row in data: 
+        writer.writerow(row)
+
+win.close()
