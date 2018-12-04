@@ -11,7 +11,7 @@ List of Bugs encountered or changes recommended
  4.   |  Incase of multiple key presses all the timestramps is been saved to the 'data'   |    Open
       |  list where it should just contain the timing for the first input                 |    
  ------------------------------------------------------------------------------------------------------
- 5.   |  Can we extend the training trials on the go?                                     |    Open
+ 5.   |  Can we extend the training trials on the go?                                     |   Closed
  ------------------------------------------------------------------------------------------------------
  6.   |  Three diffent error mesages                                                      |    Open
  ------------------------------------------------------------------------------------------------------
