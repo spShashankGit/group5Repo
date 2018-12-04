@@ -236,7 +236,7 @@ win.flip()
 wait = psychopy.event.waitKeys()
 
 clock.reset()
-while clock.getTime() < .2
+while clock.getTime() < .2:
     trials[8][1].draw() 
     trials[8][2].draw()
     ExampleMsg.draw()
