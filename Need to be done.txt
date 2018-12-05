@@ -8,7 +8,7 @@ List of Bugs encountered or changes recommended
  ------------------------------------------------------------------------------------------------------
  3.   |  Saving of data still not incoperated                                             |   Closed
  ------------------------------------------------------------------------------------------------------
- 4.   |  Incase of multiple key presses all the timestramps is been saved to the 'data'   |    Open
+ 4.   |  Incase of multiple key presses all the timestramps is been saved to the 'data'   |   Closed
       |  list where it should just contain the timing for the first input                 |    
  ------------------------------------------------------------------------------------------------------
  5.   |  Can we extend the training trials on the go?                                     |   Closed
@@ -17,9 +17,17 @@ List of Bugs encountered or changes recommended
  ------------------------------------------------------------------------------------------------------
  7.   |  Numeric conversion of data is broken                                             |   Closed
  ------------------------------------------------------------------------------------------------------
- 8.   |  Timing in exp. and training trials need to be adjusted                           |    Open
+ 8.   |  Timing in exp. and training trials need to be adjusted                           |   Closed
  ------------------------------------------------------------------------------------------------------
+ 9.   |  Add a variable to enter screen resolution                                        |    Open
  ------------------------------------------------------------------------------------------------------
+ 10.  |  Training trial pop up not showing in full screen								  |    Open
+ ------------------------------------------------------------------------------------------------------
+ 11.  |  In case of an error show what should be the right response					      |    Open
+ ------------------------------------------------------------------------------------------------------
+ 12.  |  Try to incoperate training resume message in window, rather than using the Dialog|    Open
+ ------------------------------------------------------------------------------------------------------
+ 13.  |  Add header row in data files                                                     |    Open
  ------------------------------------------------------------------------------------------------------
  ------------------------------------------------------------------------------------------------------
  ------------------------------------------------------------------------------------------------------

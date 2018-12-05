@@ -69,7 +69,7 @@ else:
 # Create window
 ############################################################################################
 win = psychopy.visual.Window(
-    size=(1024, 768),
+    size=(1920, 1060),
     units='pix',
     #fullscr=True,
     color=[1, 1, 1]
@@ -142,7 +142,12 @@ shuffle(etrials)
 #    size=100,
 #    lineColor="Black",
 #    fillColor="Black")    
-fixation = psychopy.visual.TextStim(win=win, text="*******", color="black",pos=[0,0], bold=True)
+fixation = psychopy.visual.TextStim(
+    win=win, 
+    text="*******", 
+    color="black",
+    pos=[0,0], 
+    bold=True)
 ############################################################################################
  #Define message texts
 ############################################################################################
@@ -260,7 +265,7 @@ while(training_done == "False"):
         keys = []
         psychopy.event.clearEvents()
         clock.reset()
-        while clock.getTime() < 4:
+        while clock.getTime() < 2.5:
            shape.draw() 
            text.draw()
            win.flip()
@@ -322,7 +327,7 @@ for trial in etrials:
     
     clock.reset()
     
-    while clock.getTime() < 4:
+    while clock.getTime() < 2.5:
         trial[1].draw()
         trial[2].draw()
         win.flip()
