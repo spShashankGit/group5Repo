@@ -13,6 +13,8 @@ from psychopy.visual import ShapeStim
 ############################################################################################
 # Constants and Variables
 ############################################################################################
+scr_w = 1920
+scr_h = 1060
 exp_id = "PSY_G5"           # Name of the Disrectory where data is stored
 presentation = 1            # When '1' number of trials are reduced for a faster demo
 training_done = "False"     # To extend the training on user request
@@ -69,7 +71,7 @@ else:
 # Create window
 ############################################################################################
 win = psychopy.visual.Window(
-    size=(1920, 1060),
+    size=(scr_w, scr_h),
     units='pix',
     #fullscr=True,
     color=[1, 1, 1]
@@ -163,11 +165,6 @@ wrongAnswer = psychopy.visual.TextStim(
     color="DarkRed"
 )
 
-invalidKeyStroke = psychopy.visual.TextStim(
-    win=win,
-    text="Invalid Key!",
-    color="DarkRed"
-) 
 intromsg1 = psychopy.visual.TextStim(
     win=win,
     wrapWidth=800,
@@ -211,6 +208,18 @@ intromsg1_contd = psychopy.visual.TextStim(
 """,
     color="Black"
 )
+
+cont_training = psychopy.visual.TextStim(
+    win=win,
+    wrapWidth=800,
+    text="""
+    Are you confortable with the experiment?\n
+    Press 'n' to continue training\n
+    Press any other button to move to experiment trials\n
+""",
+    color="Black"
+)
+
 
 intromsg2 = psychopy.visual.TextStim(
     win=win,
@@ -273,14 +282,14 @@ while(training_done == "False"):
         keys = psychopy.event.getKeys(
            keyList=["w","x","o","m"],
            timeStamped = clock
-
-       )
+        )
 
         if not keys: 
             print (keys)
             currenttime = clock.getTime()
             while clock.getTime() < currenttime + 4:
-               invalidKeyStroke.draw()
+               errormsg.text = "No valid button was pressed\nThe correct key would have been '" + trial[3] + "'"
+               errormsg.draw()
                win.flip()
 
         else: 
@@ -289,17 +298,36 @@ while(training_done == "False"):
             else:
                 currenttime = clock.getTime()
                 while clock.getTime() < currenttime + 4:
+                    wrongAnswer.text = "You entered the wrong key \nThe correct key would have been '" + trial[3] + "'"
                     wrongAnswer.draw()
                     win.flip()
     
-    gui = psychopy.gui.Dlg(title="Are you ready to continue ?", labelButtonOK='No', labelButtonCancel='Yes', pos=(600, 800))
-    gui.addText('Click No for more training trials', color='Black')
-    gui.show()
-    if gui.OK:  
-        training_done = "False"
+    cont_train = []
+    psychopy.event.clearEvents()
+    clock.reset()
+    while clock.getTime() < 5:
+        cont_training.draw()
+        win.flip()
+
+    cont_train = psychopy.event.getKeys(
+                 keyList=["n"],
+                 timeStamped = clock
+    )
+    
+    if cont_train:
+        if(cont_train[0][0] == "n"):
+            training_done = "False"
+        else:
+            training_done = "True"
     else:
         training_done = "True"
-
+#    gui = psychopy.gui.Dlg(title="Are you ready to continue ?", labelButtonOK='No', labelButtonCancel='Yes', pos=(600, 800))
+#    gui.addText('Click No for more training trials', color='Black')
+#    gui.show()
+#    if gui.OK:  
+#        training_done = "False"
+#    else:
+#        training_done = "True"
 ############################################################################################
 # Run Experiment Trials
 ############################################################################################
@@ -307,62 +335,80 @@ intromsg2.draw()
 win.flip()
 wait = psychopy.event.waitKeys()
 
-data = []
-count=0
+data = [["User ID","Date","Time","Trial No.","Congruent/Incongruent","Expected Responce","User Response","Timestamp"]]
+count = 0
+
+if presentation == 1:
+    etrail_cnt = 6
+else:
+    etrail_cnt = 24
 
 clock = psychopy.core.Clock()
-for trial in etrials: 
-    
-    count = count + 1
-    
-    clock.reset()
-    
-    while clock.getTime() < .5:
-        fixation.draw()
-        win.flip()
-    
-    keys = []
-    
-    psychopy.event.clearEvents()
-    
-    clock.reset()
-    
-    while clock.getTime() < 2.5:
-        trial[1].draw()
-        trial[2].draw()
-        win.flip()
-    
-    keys = psychopy.event.getKeys(
-        keyList=["o","m","w","x"],
-        timeStamped = clock
-    )
-    #print(keys[0][1])
-    #print(trial[3])
-    
-    if keys and (keys[0][0]== trial[3]):
-        pressed = keys[0][0]
-        reaction = keys[0][1]
-        print ('Correct Answer') 
-    else: 
-        pressed = -999
-        reaction = -999
-        currenttime = clock.getTime()
-        while clock.getTime() < currenttime + 4:
-            errormsg.draw()
-            win.flip()
+while(count < etrail_cnt):
+    for trial in etrials: 
+        if(count == etrail_cnt):
+            break
+        else:
+            count = count + 1
+            
+            clock.reset()
+            
+            while clock.getTime() < .5:
+                fixation.draw()
+                win.flip()
+            
+            keys = []
+            
+            psychopy.event.clearEvents()
+            
+            clock.reset()
+            
+            while clock.getTime() < 2.5:
+                trial[1].draw()
+                trial[2].draw()
+                win.flip()
+            
+            keys = psychopy.event.getKeys(
+                keyList=["o","m","w","x"],
+                timeStamped = clock
+            )
 
-    data.append( 
-        [
-            usr_id,
-            date,
-            time,
-            count,
-            trial[0],
-            trial[3],
-            pressed,
-            reaction
-        ]
-    )
+            if not keys: 
+                print (keys)
+                currenttime = clock.getTime()
+                while clock.getTime() < currenttime + 4:
+                    pressed = -999
+                    reaction = -999
+                    errormsg.text = "No valid button was pressed\nThe correct key would have been '" + trial[3] + "'"
+                    errormsg.draw()
+                    win.flip()
+
+            else: 
+                if(keys[0][0]=="w" and trial[3]=="w") or (keys[0][0]=="x" and trial[3]=="x") or (keys[0][0]=="o" and trial[3]=="o") or (keys[0][0]=="m" and trial[3]=="m"):
+                    pressed = keys[0][0]
+                    reaction = keys[0][1]
+                    print ('Correct Answer') 
+                else:
+                    pressed = -999
+                    reaction = -999
+                    currenttime = clock.getTime()
+                    while clock.getTime() < currenttime + 4:
+                        wrongAnswer.text = "You entered the wrong key \nThe correct key would have been '" + trial[3] + "'"
+                        wrongAnswer.draw()
+                        win.flip()
+
+            data.append( 
+                [
+                    usr_id,
+                    date,
+                    time,
+                    count,
+                    trial[0],
+                    trial[3],
+                    pressed,
+                    reaction
+                ]
+            )
 #print(data)
 ############################################################################################
 # End message
