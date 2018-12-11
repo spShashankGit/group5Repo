@@ -13,21 +13,21 @@ List of Bugs encountered or changes recommended
  ------------------------------------------------------------------------------------------------------
  5.   |  Can we extend the training trials on the go?                                     |   Closed
  ------------------------------------------------------------------------------------------------------
- 6.   |  Three diffent error mesages                                                      |    Open
+ 6.   |  Three diffent error mesages                                                      |   Closed
  ------------------------------------------------------------------------------------------------------
  7.   |  Numeric conversion of data is broken                                             |   Closed
  ------------------------------------------------------------------------------------------------------
  8.   |  Timing in exp. and training trials need to be adjusted                           |   Closed
  ------------------------------------------------------------------------------------------------------
- 9.   |  Add a variable to enter screen resolution                                        |    Open
+ 9.   |  Add a variable to enter screen resolution                                        |   Closed
  ------------------------------------------------------------------------------------------------------
- 10.  |  Training trial pop up not showing in full screen								  |    Open
+ 10.  |  Training trial pop up not showing in full screen                                 |   Closed
  ------------------------------------------------------------------------------------------------------
- 11.  |  In case of an error show what should be the right response					      |    Open
+ 11.  |  In case of an error show what should be the right response                       |   Closed
  ------------------------------------------------------------------------------------------------------
- 12.  |  Try to incoperate training resume message in window, rather than using the Dialog|    Open
+ 12.  |  Try to incoperate training resume message in window, rather than using the Dialog|   Closed
  ------------------------------------------------------------------------------------------------------
- 13.  |  Add header row in data files                                                     |    Open
+ 13.  |  Add header row in data files                                                     |   Closed
  ------------------------------------------------------------------------------------------------------
- ------------------------------------------------------------------------------------------------------
+ 14.  |  No. of correct records should be fixed                                           |   Closed
  ------------------------------------------------------------------------------------------------------
