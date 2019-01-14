@@ -16,7 +16,7 @@ from psychopy.visual import ShapeStim
 scr_w = 1920
 scr_h = 1060
 exp_id = "PSY_G5"           # Name of the Disrectory where data is stored
-presentation = 1            # When '1' number of trials are reduced for a faster demo
+presentation = 0            # When '1' number of trials are reduced for a faster demo
 training_done = "False"     # To extend the training on user request
 trials  = []                # List of all possible Stimuli
 ttrials = []                # Training Trials List
@@ -349,8 +349,6 @@ while(count < etrail_cnt):
         if(count == etrail_cnt):
             break
         else:
-            count = count + 1
-            
             clock.reset()
             
             while clock.getTime() < .5:
@@ -385,6 +383,7 @@ while(count < etrail_cnt):
 
             else: 
                 if(keys[0][0]=="w" and trial[3]=="w") or (keys[0][0]=="x" and trial[3]=="x") or (keys[0][0]=="o" and trial[3]=="o") or (keys[0][0]=="m" and trial[3]=="m"):
+                    count = count + 1
                     pressed = keys[0][0]
                     reaction = keys[0][1]
                     print ('Correct Answer') 
