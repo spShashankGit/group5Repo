@@ -119,13 +119,13 @@ for i in range (1,13):   # To generate all 12 possible stimuli
         trials.append([1, bs_rect, bt_tri, 'x'])
     #incongruent trails - Color
     elif(i == 9):
-        trials.append([2, bs_rect, rt_rect, 'x'])
+        trials.append([1, bs_rect, rt_rect, 'x'])
     elif(i == 10):
-        trials.append([2, bs_tri, rt_tri, 'w'])
+        trials.append([1, bs_tri, rt_tri, 'w'])
     elif(i == 11):
-        trials.append([2, rs_rect, bt_rect, 'm'])
+        trials.append([1, rs_rect, bt_rect, 'm'])
     elif(i == 12):
-        trials.append([2, rs_tri, bt_tri, 'o'])
+        trials.append([1, rs_tri, bt_tri, 'o'])
 
 if presentation == 1 :
     ttrials = [trials[0]]+[trials[4]]+[trials[8]]+[trials[6]]+[trials[10]]+[trials[2]]
