@@ -146,6 +146,174 @@ User ID,Date,Time,Trial No.,Congruent/Incongruent,Expected Responce,User Respons
 22MRNSA,1/14/2019,22:29:45,9,0,1,1,0.952431917,,,
 22MRNSA,1/14/2019,22:29:45,10,2,1,1,1.218792915,,,
 22MRNSA,1/14/2019,22:29:45,11,1,2,2,1.152963161,,,
+Last login: Sun Jan 27 16:45:07 on console
+Bhavyas-MacBook-Pro:~ bhavya$ cd /Users/bhavya/Documents/GitHub/group5Repo/PSY_G5 
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vim-diff 
+.DS_Store               24mdera.csv             27fumra.csv
+20fvibi.csv             24myosa.csv             27madgo.csv
+21fbhpa.csv             25fanpa.csv             28fhefa.csv
+21mberi.csv             25fiswe.csv             28mobal.csv
+22faneb.csv             25fnasa.csv             29mstba.csv
+22frabh.csv             25madsa.csv             Congruent.xlsx
+22mrnsa.csv             25maksh.csv             Incongruent-Color.xlsx
+23fanbo.csv             25mminn.csv             Incongruent-Shape.xlsx
+23fmnlb.csv             25mrrais.csv            all_data.csv
+23mzura.csv             26fchsa.csv             combine.csv
+24fbada.csv             26fkagu.csv             congruent.csv
+24fragi.csv             26mpnko.csv             
+24masva.csv             27fclis.csv             
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vim-diff 
+.DS_Store               24mdera.csv             27fumra.csv
+20fvibi.csv             24myosa.csv             27madgo.csv
+21fbhpa.csv             25fanpa.csv             28fhefa.csv
+21mberi.csv             25fiswe.csv             28mobal.csv
+22faneb.csv             25fnasa.csv             29mstba.csv
+22frabh.csv             25madsa.csv             Congruent.xlsx
+22mrnsa.csv             25maksh.csv             Incongruent-Color.xlsx
+23fanbo.csv             25mminn.csv             Incongruent-Shape.xlsx
+23fmnlb.csv             25mrrais.csv            all_data.csv
+23mzura.csv             26fchsa.csv             combine.csv
+24fbada.csv             26fkagu.csv             congruent.csv
+24fragi.csv             26mpnko.csv             
+24masva.csv             27fclis.csv             
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vim-diff combine.csv all_data.csv 
+-bash: vim-diff: command not found
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vim
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vim -diff combine.csv all_data.csv 
+VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Aug 17 2018 17:24:51)
+Garbage after option argument: "-diff"
+More info with: "vim -h"
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vom -h
+-bash: vom: command not found
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vim -h
+VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Aug 17 2018 17:24:51)
+
+usage: vim [arguments] [file ..]       edit specified file(s)
+   or: vim [arguments] -               read text from stdin
+   or: vim [arguments] -t tag          edit file where tag is defined
+   or: vim [arguments] -q [errorfile]  edit file with first error
+
+Arguments:
+   --			Only file names after this
+   -v			Vi mode (like "vi")
+   -e			Ex mode (like "ex")
+   -E			Improved Ex mode
+   -s			Silent (batch) mode (only for "ex")
+   -d			Diff mode (like "vimdiff")
+   -y			Easy mode (like "evim", modeless)
+   -R			Readonly mode (like "view")
+   -Z			Restricted mode (like "rvim")
+   -m			Modifications (writing files) not allowed
+   -M			Modifications in text not allowed
+   -b			Binary mode
+   -l			Lisp mode
+   -C			Compatible with Vi: 'compatible'
+   -N			Not fully Vi compatible: 'nocompatible'
+   -V[N][fname]		Be verbose [level N] [log messages to fname]
+   -D			Debugging mode
+   -n			No swap file, use memory only
+   -r			List swap files and exit
+   -r (with file name)	Recover crashed session
+   -L			Same as -r
+   -T <terminal>	Set terminal type to <terminal>
+   --not-a-term		Skip warning for input/output not being a terminal
+   --ttyfail		Exit if input or output is not a terminal
+   -u <vimrc>		Use <vimrc> instead of any .vimrc
+   --noplugin		Don't load plugin scripts
+   -p[N]		Open N tab pages (default: one for each file)
+   -o[N]		Open N windows (default: one for each file)
+   -O[N]		Like -o but split vertically
+   +			Start at end of file
+   +<lnum>		Start at line <lnum>
+   --cmd <command>	Execute <command> before loading any vimrc file
+   -c <command>		Execute <command> after loading the first file
+   -S <session>		Source file <session> after loading the first file
+   -s <scriptin>	Read Normal mode commands from file <scriptin>
+   -w <scriptout>	Append all typed commands to file <scriptout>
+   -W <scriptout>	Write all typed commands to file <scriptout>
+   -x			Edit encrypted files
+   --startuptime <file>	Write startup timing messages to <file>
+   -i <viminfo>		Use <viminfo> instead of .viminfo
+   --clean		'nocompatible', Vim defaults, no plugins, no viminfo
+   -h  or  --help	Print Help (this message) and exit
+   --version		Print version information and exit
+Bhavyas-MacBook-Pro:PSY_G5 bhavya$ vim -d combine.csv all_data.csv 
+2 files to edit
+
+  22MRNSA,1/14/2019,22:29:45,12,2,0,0,1.|  22MRNSA,01/14/2019,22:29:45,12,2,0,0,1.6689739227294922                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,12,2,3,-999|  22MRNSA,01/14/2019,22:29:45,12,2,3,-999,-999                                                                                                                                                       
+  22MRNSA,1/14/2019,22:29:45,13,0,2,2,1.|  22MRNSA,01/14/2019,22:29:45,13,0,2,2,1.2398390769958496                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,14,0,3,3,1.|  22MRNSA,01/14/2019,22:29:45,14,0,3,3,1.3195700645446777                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,15,1,2,2,1.|  22MRNSA,01/14/2019,22:29:45,15,1,2,2,1.0876128673553467                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,16,2,2,2,1.|  22MRNSA,01/14/2019,22:29:45,16,2,2,2,1.2484259605407715                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,17,2,1,1,1.|  22MRNSA,01/14/2019,22:29:45,17,2,1,1,1.653939962387085                                                                                                                                             
+  22MRNSA,1/14/2019,22:29:45,18,1,0,0,1.|  22MRNSA,01/14/2019,22:29:45,18,1,0,0,1.0025238990783691                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,19,0,1,1,1.|  22MRNSA,01/14/2019,22:29:45,19,0,1,1,1.284754991531372                                                                                                                                             
+  22MRNSA,1/14/2019,22:29:45,19,0,3,-999|  22MRNSA,01/14/2019,22:29:45,19,0,3,-999,-999                                                                                                                                                       
+  22MRNSA,1/14/2019,22:29:45,19,2,3,-999|  22MRNSA,01/14/2019,22:29:45,19,2,3,-999,-999                                                                                                                                                       
+  22MRNSA,1/14/2019,22:29:45,20,0,2,2,1.|  22MRNSA,01/14/2019,22:29:45,20,0,2,2,1.5856420993804932                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,20,1,3,-999|  22MRNSA,01/14/2019,22:29:45,20,1,3,-999,-999                                                                                                                                                       
+  22MRNSA,1/14/2019,22:29:45,21,0,0,0,0.|  22MRNSA,01/14/2019,22:29:45,21,0,0,0,0.9238021373748779                                                                                                                                            
+  22MRNSA,1/14/2019,22:29:45,22,0,0,0,1.|  22MRNSA,01/14/2019,22:29:45,22,0,0,0,1.051156997680664                                                                                                                                             
+  22MRNSA,1/14/2019,22:29:45,23,2,2,2,1.|  22MRNSA,01/14/2019,22:29:45,23,2,2,2,1.120851993560791                                                                                                                                             
+  22MRNSA,1/14/2019,22:29:45,23,1,3,-999|  22MRNSA,01/14/2019,22:29:45,23,1,3,-999,-999                                                                                                                                                       
+  22MRNSA,1/14/2019,22:29:45,24,1,1,1,1.|  22MRNSA,01/14/2019,22:29:45,24,1,1,1,1.3196518421173096                                                                                                                                            
+  User ID,Date,Time,Trial No.,Congruent/|  User ID,Date,Time,Trial No.,Congruent/Incongruent,Expected Responce,User Response,Timestamp                                                                                                        
+  23FANBO,1/14/2019,22:56:25,1,2,1,1,1.1|  23FANBO,01/14/2019,22:56:25,1,2,1,1,1.1088190078735352                                                                                                                                             
+  23FANBO,1/14/2019,22:56:25,2,1,1,1,2.3|  23FANBO,01/14/2019,22:56:25,2,1,1,1,2.386392116546631                                                                                                                                              
+  23FANBO,1/14/2019,22:56:25,2,0,0,-999,|  23FANBO,01/14/2019,22:56:25,2,0,0,-999,-999                                                                                                                                                        
+  23FANBO,1/14/2019,22:56:25,2,2,3,-999,|  23FANBO,01/14/2019,22:56:25,2,2,3,-999,-999                                                                                                                                                        
+  23FANBO,1/14/2019,22:56:25,2,0,3,-999,|  23FANBO,01/14/2019,22:56:25,2,0,3,-999,-999                                                                                                                                                        
+  23FANBO,1/14/2019,22:56:25,3,2,2,2,1.0|  23FANBO,01/14/2019,22:56:25,3,2,2,2,1.075273036956787                                                                                                                                              
+  23FANBO,1/14/2019,22:56:25,4,0,1,1,1.8|  23FANBO,01/14/2019,22:56:25,4,0,1,1,1.819472074508667                                                                                                                                              
+  23FANBO,1/14/2019,22:56:25,5,1,2,2,1.0|  23FANBO,01/14/2019,22:56:25,5,1,2,2,1.068256139755249                                                                                                                                              
+  23FANBO,1/14/2019,22:56:25,6,1,3,3,2.1|  23FANBO,01/14/2019,22:56:25,6,1,3,3,2.1144750118255615                                                                                                                                             
+  23FANBO,1/14/2019,22:56:25,7,1,1,1,0.6|  23FANBO,01/14/2019,22:56:25,7,1,1,1,0.6205530166625977                                                                                                                                             
+  23FANBO,1/14/2019,22:56:25,7,1,3,-999,|  23FANBO,01/14/2019,22:56:25,7,1,3,-999,-999                                                                                                                                                        
+  23FANBO,1/14/2019,22:56:25,7,0,0,-999,|  23FANBO,01/14/2019,22:56:25,7,0,0,-999,-999                                                                                                                                                        
+  23FANBO,1/14/2019,22:56:25,8,2,0,0,1.9|  23FANBO,01/14/2019,22:56:25,8,2,0,0,1.9523909091949463                                                                                                                                             
+  23FANBO,1/14/2019,22:56:25,9,2,1,1,0.4|  23FANBO,01/14/2019,22:56:25,9,2,1,1,0.43677783012390137                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,10,1,2,2,1.|  23FANBO,01/14/2019,22:56:25,10,1,2,2,1.6151361465454102                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,11,0,3,3,0.|  23FANBO,01/14/2019,22:56:25,11,0,3,3,0.4980471134185791                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,12,0,2,2,2.|  23FANBO,01/14/2019,22:56:25,12,0,2,2,2.1983489990234375                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,12,2,2,-999|  23FANBO,01/14/2019,22:56:25,12,2,2,-999,-999                                                                                                                                                       
+  23FANBO,1/14/2019,22:56:25,13,1,0,0,0.|  23FANBO,01/14/2019,22:56:25,13,1,0,0,0.8352699279785156                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,14,1,0,0,0.|  23FANBO,01/14/2019,22:56:25,14,1,0,0,0.8684790134429932                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,15,0,2,2,1.|  23FANBO,01/14/2019,22:56:25,15,0,2,2,1.9399919509887695                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,16,2,0,0,2.|  23FANBO,01/14/2019,22:56:25,16,2,0,0,2.4200239181518555                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,17,0,1,1,0.|  23FANBO,01/14/2019,22:56:25,17,0,1,1,0.6635549068450928                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,18,2,3,3,0.|  23FANBO,01/14/2019,22:56:25,18,2,3,3,0.6137728691101074                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,19,2,1,1,2.|  23FANBO,01/14/2019,22:56:25,19,2,1,1,2.1014339923858643                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,20,1,1,1,1.|  23FANBO,01/14/2019,22:56:25,20,1,1,1,1.902979850769043                                                                                                                                             
+  23FANBO,1/14/2019,22:56:25,20,0,0,-999|  23FANBO,01/14/2019,22:56:25,20,0,0,-999,-999                                                                                                                                                       
+  23FANBO,1/14/2019,22:56:25,21,2,3,3,1.|  23FANBO,01/14/2019,22:56:25,21,2,3,3,1.3867931365966797                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,22,0,3,3,1.|  23FANBO,01/14/2019,22:56:25,22,0,3,3,1.2858479022979736                                                                                                                                            
+  23FANBO,1/14/2019,22:56:25,22,2,2,-999|  23FANBO,01/14/2019,22:56:25,22,2,2,-999,-999                                                                                                                                                       
+  23FANBO,1/14/2019,22:56:25,23,0,1,1,2.|  23FANBO,01/14/2019,22:56:25,23,0,1,1,2.518110990524292                                                                                                                                             
+  23FANBO,1/14/2019,22:56:25,24,1,2,2,1.|  23FANBO,01/14/2019,22:56:25,24,1,2,2,1.1862950325012207                                                                                                                                            
+  User ID,Date,Time,Trial No.,Congruent/|  User ID,Date,Time,Trial No.,Congruent/Incongruent,Expected Responce,User Response,Timestamp                                                                                                        
+  23FMNLB,1/15/2019,16:57:06,1,1,0,0,1.6|  23FMNLB,01/15/2019,16:57:06,1,1,0,0,1.6707429885864258                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,1,1,2,-999,|  23FMNLB,01/15/2019,16:57:06,1,1,2,-999,-999                                                                                                                                                        
+  23FMNLB,1/15/2019,16:57:06,2,0,0,0,1.6|  23FMNLB,01/15/2019,16:57:06,2,0,0,0,1.6882669925689697                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,3,2,1,1,1.8|  23FMNLB,01/15/2019,16:57:06,3,2,1,1,1.822058916091919                                                                                                                                              
+  23FMNLB,1/15/2019,16:57:06,4,0,2,2,1.3|  23FMNLB,01/15/2019,16:57:06,4,0,2,2,1.3037731647491455                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,5,2,2,2,1.6|  23FMNLB,01/15/2019,16:57:06,5,2,2,2,1.6217989921569824                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,6,1,1,1,2.0|  23FMNLB,01/15/2019,16:57:06,6,1,1,1,2.0383129119873047                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,7,0,0,0,0.6|  23FMNLB,01/15/2019,16:57:06,7,0,0,0,0.6028320789337158                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,8,0,1,1,1.9|  23FMNLB,01/15/2019,16:57:06,8,0,1,1,1.9036219120025635                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,8,2,0,-999,|  23FMNLB,01/15/2019,16:57:06,8,2,0,-999,-999                                                                                                                                                        
+  23FMNLB,1/15/2019,16:57:06,8,0,3,-999,|  23FMNLB,01/15/2019,16:57:06,8,0,3,-999,-999                                                                                                                                                        
+  23FMNLB,1/15/2019,16:57:06,8,2,1,-999,|  23FMNLB,01/15/2019,16:57:06,8,2,1,-999,-999                                                                                                                                                        
+  23FMNLB,1/15/2019,16:57:06,9,1,2,2,1.2|  23FMNLB,01/15/2019,16:57:06,9,1,2,2,1.2538440227508545                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,10,0,2,2,0.|  23FMNLB,01/15/2019,16:57:06,10,0,2,2,0.7539868354797363                                                                                                                                            
+  23FMNLB,1/15/2019,16:57:06,11,2,2,2,0.|  23FMNLB,01/15/2019,16:57:06,11,2,2,2,0.6211299896240234                                                                                                                                            
+  23FMNLB,1/15/2019,16:57:06,12,0,3,3,0.|  23FMNLB,01/15/2019,16:57:06,12,0,3,3,0.9366419315338135                                                                                                                                            
+  23FMNLB,1/15/2019,16:57:06,13,1,3,3,1.|  23FMNLB,01/15/2019,16:57:06,13,1,3,3,1.036992073059082                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,14,2,3,3,1.|  23FMNLB,01/15/2019,16:57:06,14,2,3,3,1.6039600372314453                                                                                                                                            
+  23FMNLB,1/15/2019,16:57:06,15,1,3,3,1.|  23FMNLB,01/15/2019,16:57:06,15,1,3,3,1.953902006149292                                                                                                                                             
+  23FMNLB,1/15/2019,16:57:06,16,2,3,3,0.|  23FMNLB,01/15/2019,16:57:06,16,2,3,3,0.7707581520080566                                                                                                                                            
+combine.csv                              all_data.csv                                                                                                                                                                                         
+
 22MRNSA,1/14/2019,22:29:45,12,2,0,0,1.668973923,,,
 22MRNSA,1/14/2019,22:29:45,12,2,3,-999,-999,,,
 22MRNSA,1/14/2019,22:29:45,13,0,2,2,1.239839077,,,
